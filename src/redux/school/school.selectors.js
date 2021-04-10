@@ -5,5 +5,5 @@ const selectSchool = state => state.school;
 
 export const selectSchools = createSelector(
     [selectSchool],
-    school => school.schools
+    school => school ? school.schools : []
 )

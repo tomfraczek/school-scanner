@@ -1,9 +1,5 @@
 import React from 'react';
 
-import { createStructuredSelector } from 'reselect';
-import { connect } from 'react-redux';
-import { selectCurrentUser } from '../../redux/user/user.selector';
-
 import { createSchoolProfileDocument } from '../../firebase/firebase.utils'
 
 import FormInput from '../form-input/form-input.component'
@@ -23,7 +19,6 @@ class SchoolAdd extends React.Component {
             teacher: '',
             country: '',
             city: '',
-            training_days: [],
             logo_url: '',
         }
     }
@@ -122,15 +117,6 @@ class SchoolAdd extends React.Component {
 
                     <FormInput
                         type='text'
-                        name='training_days'
-                        value={training_days}
-                        onChange={this.handleChange}
-                        label='Training days'
-                        required
-                    />
-
-                    <FormInput
-                        type='text'
                         name='logo_url'
                         value={logo_url}
                         onChange={this.handleChange}
@@ -144,9 +130,5 @@ class SchoolAdd extends React.Component {
         )
     }
 }
-
-// const mapStateToProps = createStructuredSelector({
-//     currentUser: selectCurrentUser
-// })
 
 export default SchoolAdd;

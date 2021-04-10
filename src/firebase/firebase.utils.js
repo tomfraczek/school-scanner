@@ -13,6 +13,7 @@ const config = {
     appId: "1:406998494012:web:1f8de5329e7743176c0c39"
 };
 
+//create a new user in db
 export const createUserProfileDocument = async (userAuth, aditionalData) => {
     if(!userAuth) return;
 
@@ -40,8 +41,10 @@ export const createUserProfileDocument = async (userAuth, aditionalData) => {
 
     return userRef;
   }
-  export const createSchoolProfileDocument = async (schoolKey, schoolToAdd) => {
 
+
+  //add a new school to db
+  export const createSchoolProfileDocument = async (schoolKey, schoolToAdd) => {
     const schoolRef = firestore.collection(schoolKey);
     const docRef = schoolRef.doc();
     console.log(docRef);
@@ -53,31 +56,17 @@ export const createUserProfileDocument = async (userAuth, aditionalData) => {
     }
 
     return docRef;
-    // const schoolRef = firestore.doc(`schools/${school.id}`);
-
-    // const snapShot = await userRef.get();
-
-    // if(!snapShot.exists){
-    //   const {displayName, email} = userAuth;
-    //   const createdAt = new Date();
-
-    //   try{
-
-    //     await userRef.set({
-    //       displayName,
-    //       email,
-    //       createdAt,
-    //       ...aditionalData
-    //     })
-
-    //   }catch(error){
-    //     console.log('error creating user', error.message)
-    //   }
-    // }
-
-    // return userRef;
   }
 
+
+  //convert the schools db snapschot to object
+  export const convertSchoolsSnapschotToMap = (schools) => {
+    const transformedSchool = schools.docs.map(doc => {
+      return doc.data()
+    })
+
+    return transformedSchool;
+  }
   
 
 firebase.initializeApp(config);

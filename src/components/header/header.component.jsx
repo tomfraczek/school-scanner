@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -8,7 +8,7 @@ import { selectCurrentUser } from '../../redux/user/user.selector';
 
 import './header.styles.scss';
 
-const Header = ({currentUser}) => (
+const Header = ({currentUser, history}) => (
     <div className="header">
         <Link className='logo-container' to='/'>
             <h1>School-Scanner</h1>
@@ -20,7 +20,10 @@ const Header = ({currentUser}) => (
                 currentUser ? 
                 <div className="logged-in-options">
                     <Link className='option' to='/profile'>Profile</Link>
-                    <div className='option' onClick={() => auth.signOut()}>Sign Out</div>
+                    <div className='option' onClick={() => {
+                        auth.signOut();
+                        history.push('/')
+                    }}>Sign Out</div>
                 </div>
                 : 
                 <div className='login-buttons'> 
@@ -37,4 +40,4 @@ const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
 })
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
