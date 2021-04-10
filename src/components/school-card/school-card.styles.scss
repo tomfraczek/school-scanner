@@ -1,0 +1,49 @@
+.schools{
+    display: flex;
+    justify-content: space-between;
+
+    .school-card{
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        max-width: 350px;
+        // padding: 30px;
+    
+        .logo{
+            width: 250px;
+            margin: 0 auto 30px auto;
+        }
+
+        .card-details{
+            display: flex;
+            flex-direction: column;
+
+            p{
+                display: flex;
+                justify-content: space-between;
+                margin: 4px 0;
+            }
+
+            span{
+                margin: 4px 0;
+            }
+            
+            .days-container{
+                display: flex;
+                justify-content: space-between;
+
+                .days{
+                    display: flex;
+                    flex-direction: column;
+
+                    .day{
+                        text-align: right;
+                        text-transform: capitalize;
+                    }
+                }
+            }
+
+            
+        }
+    }
+}
