@@ -3,11 +3,11 @@ import React from 'react';
 import './schools-overview.styles.scss';
 
 import { connect } from 'react-redux';
-import { selectSchools } from '../../redux/school/school.selectors';
+import { selectSchoolsForOverview } from '../../redux/school/school.selectors';
 
 import { createStructuredSelector } from 'reselect';
 
-import SchoolCard from '../../components/school-card/school-card.component'
+import SchoolCard from '../../components/school-card/school-card.component';
 
 
 const SchoolsOverview = ({schools}) => (
@@ -21,7 +21,7 @@ const SchoolsOverview = ({schools}) => (
 )
 
 const mapStateToProps = createStructuredSelector({
-    schools: selectSchools
+    schools: selectSchoolsForOverview
 })
 
 export default connect(mapStateToProps)(SchoolsOverview);

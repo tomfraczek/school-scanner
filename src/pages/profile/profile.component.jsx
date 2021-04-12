@@ -16,10 +16,8 @@ class Profile extends React.Component{
         const {match, currentUser} = this.props;
         return(
             <div className="profile">
-                <Link to={`${match.path}/add-school`}>Click</Link>
-                <div className="tomeczek">
+                <Link to={`${match.path}/add-school`}>Add school</Link>
                 <Route exact path={`${match.path}`} component={ProfileOverview} />
-                </div>
                 <Route path={`${match.path}/edit`} component={ProfileEdit} />
                 <Route path={`${match.path}/add-school`} render={() => (
                     <SchoolAdd currentUser={currentUser} />

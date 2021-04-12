@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selector'
+
 import './homepage.styles.scss';
 
 import SignIn from '../../pages/sign-in/sign-in.component';
 
-const Homepage = () => (
+const Homepage = ({currentUser}) => (
     <div className="homepage">
 
         <div className="intro">
@@ -14,10 +18,17 @@ const Homepage = () => (
         </div>
 
         <div className="sign-in">
-            <SignIn />
-            <Link to='/sign-up'>Create a new account</Link>
+            {
+                currentUser ? null : <SignIn />
+            }
+            
+            
         </div>
     </div>
 )
 
-export default Homepage;
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser
+})
+
+export default connect(mapStateToProps)(Homepage);

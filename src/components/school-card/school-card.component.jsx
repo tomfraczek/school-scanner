@@ -6,7 +6,6 @@ import './school-card.styles.scss';
 const SchoolCard = ({school, history, match}) => (
     <div className='school-card' 
     onClick={() => history.push(`${match.url}/${school.id}`)}>
-        {console.log(school)}
         <div className="logo-container">
             <img className='logo' src={school.logo_url} alt="logo"/>
         </div>

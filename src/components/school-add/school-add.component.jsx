@@ -21,7 +21,8 @@ class SchoolAdd extends React.Component {
             country: '',
             city: '',
             logo_url: '',
-            id: '',
+            description: '',
+            published: false,
         }
     }
 
@@ -39,7 +40,7 @@ class SchoolAdd extends React.Component {
 
     handleSubmit = async (event, history) => {
         event.preventDefault();
-        const {name, shorthand, teacher, country, city, training_days, logo_url} = this.state;
+        const {name, shorthand, teacher, country, city, training_days, logo_url, description, published} = this.state;
         
         try{
         
@@ -56,6 +57,8 @@ class SchoolAdd extends React.Component {
                 city: '',
                 training_days: [],
                 logo_url: '',
+                description: '',
+                published: false,
             })
 
             //redirect to homepage
@@ -67,13 +70,16 @@ class SchoolAdd extends React.Component {
     }
 
     handleChange = event => {
-        const {name, value} = event.target;
+        const target = event.target;
+        const {name, value} = target;
 
-        this.setState({[name]: value});
+        // console.log(name, value)
+
+        this.setState(target.type === 'checkbox' ? {[name]: !this.state.published} : {[name]: value});
     }
 
     render(){
-        const {name, shorthand, teacher, country, city, training_days, logo_url} = this.state;
+        const {name, shorthand, teacher, country, city, description, logo_url, published} = this.state;
 
         return(
             <div className="profile-edit">
@@ -131,6 +137,23 @@ class SchoolAdd extends React.Component {
                         onChange={this.handleChange}
                         label='Logo URL'
                         required
+                    />
+
+                    <FormInput
+                        className='description-field'
+                        type='text'
+                        name='description'
+                        value={description}
+                        onChange={this.handleChange}
+                        label='Description'
+                        required
+                    />
+
+                    <FormInput
+                        type='checkbox'
+                        name='published'
+                        value={published}
+                        onChange={this.handleChange}
                     />
 
                     <CustomButton type='submit'>Add School</CustomButton>

@@ -4,6 +4,8 @@ import './sign-in.styles.scss';
 
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
+import { Link } from 'react-router-dom';
+
 import FormInput from '../../components/form-input/form-input.component'
 import CustomButton from '../../components/custom-button/custom-button.component'
 
@@ -40,8 +42,6 @@ class SignIn extends React.Component {
     render(){
         return(
             <div className='sign-in'>
-                <span>Enter your email and password</span>
-
                 <form onSubmit={this.handleSubmit}>
                     <FormInput 
                         name='email' 
@@ -79,6 +79,7 @@ class SignIn extends React.Component {
                         </CustomButton>
                     </div>
                 </form>
+                <Link to='/sign-up'>Create a new account</Link>
             </div>
         )
     }

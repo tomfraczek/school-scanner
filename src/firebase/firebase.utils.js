@@ -63,7 +63,6 @@ export const createUserProfileDocument = async (userAuth, aditionalData) => {
   //convert the schools db snapschot to object
   export const convertSchoolsSnapschotToMap = (schools) => {
     const transformedSchool = schools.docs.map(doc => {
-      console.log(doc.data())
       return doc.data()
     })
 
