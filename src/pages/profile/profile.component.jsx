@@ -21,7 +21,7 @@ class Profile extends React.Component{
                 <Route exact path={`${match.path}`} component={ProfileOverview} />
                 </div>
                 <Route path={`${match.path}/edit`} component={ProfileEdit} />
-                <Route path={`${match.path}/add-school`} render={routeProps => (
+                <Route path={`${match.path}/add-school`} render={() => (
                     <SchoolAdd currentUser={currentUser} />
                     )}
                 />

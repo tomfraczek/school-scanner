@@ -1,16 +1,17 @@
 import React from 'react';
+import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { createStructuredSelector } from 'reselect';
  
 import './schools.styles.scss';
 
-import { selectSchools } from '../../redux/school/school.selectors';
 import { updateSchools } from '../../redux/school/school.actions';
 
 import { firestore } from '../../firebase/firebase.utils';
 import { convertSchoolsSnapschotToMap } from '../../firebase/firebase.utils';
 
-import SchoolCard from '../../components/school-card/school-card.component'
+import SchoolsOverview from '../../components/schools-overview/schools-overview.component';
+import SchoolPage from '../school/school.component'
+
 
 class Schools extends React.Component {
     unsubscribeFromSnapshot = null;
@@ -27,15 +28,11 @@ class Schools extends React.Component {
 
 
     render(){
-    const {schools} = this.props;
-
+        const {match} = this.props;
         return(
             <div className="schools">
-                {
-                    schools ? schools.map((school, index) => (
-                            <SchoolCard key={index} school={school} />
-                    )) : null
-                }
+                <Route exact path={`${match.path}`} component={SchoolsOverview} />
+                <Route path={`${match.path}/:schoolId`} component={SchoolPage} />
             </div>
         )
     }
@@ -45,8 +42,6 @@ const mapDispatchToProps = dispatch => ({
     updateSchools: schoolsMap => dispatch(updateSchools(schoolsMap))
 })
 
-const mapStateToProps = createStructuredSelector({
-    schools: selectSchools
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Schools);
+
+export default withRouter(connect(null, mapDispatchToProps)(Schools));

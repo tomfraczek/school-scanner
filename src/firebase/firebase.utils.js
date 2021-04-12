@@ -47,8 +47,9 @@ export const createUserProfileDocument = async (userAuth, aditionalData) => {
   export const createSchoolProfileDocument = async (schoolKey, schoolToAdd) => {
     const schoolRef = firestore.collection(schoolKey);
     const docRef = schoolRef.doc();
-    console.log(docRef);
-
+    schoolToAdd.id = docRef.id;
+    schoolToAdd.created_at = Math.floor(Date.now()/1000);
+    
     try {
       await docRef.set(schoolToAdd);
     } catch (error){
@@ -62,6 +63,7 @@ export const createUserProfileDocument = async (userAuth, aditionalData) => {
   //convert the schools db snapschot to object
   export const convertSchoolsSnapschotToMap = (schools) => {
     const transformedSchool = schools.docs.map(doc => {
+      console.log(doc.data())
       return doc.data()
     })
 

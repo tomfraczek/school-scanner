@@ -1,10 +1,15 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import './school-card.styles.scss';
 
-const SchoolCard = ({school}) => (
-    <div className='school-card'>
-        <img className='logo' src={school.logo_url} alt="logo"/>
+const SchoolCard = ({school, history, match}) => (
+    <div className='school-card' 
+    onClick={() => history.push(`${match.url}/${school.id}`)}>
+        {console.log(school)}
+        <div className="logo-container">
+            <img className='logo' src={school.logo_url} alt="logo"/>
+        </div>
 
         <div className="card-details">
             <p><span>Name:</span><span>{school.name}</span></p>
@@ -15,4 +20,4 @@ const SchoolCard = ({school}) => (
     </div>
 )
 
-export default SchoolCard;
+export default withRouter(SchoolCard);

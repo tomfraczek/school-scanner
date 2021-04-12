@@ -22,7 +22,7 @@ const Header = ({currentUser, history}) => (
                     <Link className='option' to='/profile'>Profile</Link>
                     <div className='option' onClick={() => {
                         auth.signOut();
-                        history.push('/')
+                        history.push('/');
                     }}>Sign Out</div>
                 </div>
                 : 

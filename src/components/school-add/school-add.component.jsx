@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 
 import { createSchoolProfileDocument } from '../../firebase/firebase.utils'
 
@@ -20,6 +21,7 @@ class SchoolAdd extends React.Component {
             country: '',
             city: '',
             logo_url: '',
+            id: '',
         }
     }
 
@@ -35,13 +37,17 @@ class SchoolAdd extends React.Component {
         }
     }
 
-    handleSubmit = async event => {
+    handleSubmit = async (event, history) => {
         event.preventDefault();
         const {name, shorthand, teacher, country, city, training_days, logo_url} = this.state;
         
         try{
         
-        await createSchoolProfileDocument('schools', this.state);
+            //creates a new school document in firebase
+            await createSchoolProfileDocument('schools', this.state);
+
+
+            //clear the form
             this.setState({
                 name: '',
                 shorthand: '',
@@ -51,6 +57,9 @@ class SchoolAdd extends React.Component {
                 training_days: [],
                 logo_url: '',
             })
+
+            //redirect to homepage
+            history.push('/');
 
         }catch (error) {
             console.error(error)
@@ -131,4 +140,4 @@ class SchoolAdd extends React.Component {
     }
 }
 
-export default SchoolAdd;
+export default withRouter(SchoolAdd);

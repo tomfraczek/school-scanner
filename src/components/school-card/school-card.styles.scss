@@ -11,12 +11,24 @@
         max-width: 350px;
         border: 1px solid #bbb;
         padding: 30px 15px;
-    
-        .logo{
-            width: 250px;
-            margin: 0 auto 30px auto;
+
+        &:hover{
+            cursor: pointer;
         }
 
+        .logo-container{
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .logo{
+                width: 250px;
+                margin: 0 auto 30px auto;
+            }
+        }
+    
+       
         .card-details{
             display: flex;
             flex-direction: column;
