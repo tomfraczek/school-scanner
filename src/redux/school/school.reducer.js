@@ -12,6 +12,10 @@ const schoolReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 schools: action.payload
             }
+        case SchoolActionTypes.GET_USER_SCHOOLS:
+            return {
+                ...state
+            }
         default:
             return state;
     }

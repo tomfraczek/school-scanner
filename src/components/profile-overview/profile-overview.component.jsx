@@ -3,32 +3,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selector';
-import { selectSchoolsForOverview } from '../../redux/school/school.selectors';
+import { selectCurrentUserSchools } from '../../redux/school/school.selectors';
 
 import SchoolCard from '../school-card/school-card.component';
 
 import './profile-overview.styles.scss';
 
 class ProfileOverview extends React.Component {
-    constructor(props){
-        super(props);
 
-        this.state = {
-            userSchools: []
-        }
-    }
-
-
-    componentDidMount(){
-        const {currentUser, school} = this.props;
-        const userSchools = school.filter(school => school.author.id === currentUser.id)
-        this.setState({
-            userSchools: userSchools
-        })
-    }
 
     render(){
-        const {currentUser} = this.props;
+        const {currentUser, userSchools} = this.props;
 
         return(
             <div className="profile-overview">
@@ -37,9 +22,9 @@ class ProfileOverview extends React.Component {
 
                 <div className="schools">
                 {
-                    this.state.userSchools ?  
-                    this.state.userSchools.map(school =>
-                        <SchoolCard school={school} />
+                    userSchools ?  
+                    userSchools.map(school =>
+                        <SchoolCard key={school.id} school={school} />
                     )
                     : null
                 }
@@ -49,9 +34,9 @@ class ProfileOverview extends React.Component {
     }
 }
 
-const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
-    school: selectSchoolsForOverview
+const mapStateToProps = (state, ownProps) => ({
+    currentUser: selectCurrentUser(state),
+    userSchools: selectCurrentUserSchools(state.user.currentUser.id)(state)
 })
 
 export default connect(mapStateToProps)(ProfileOverview);

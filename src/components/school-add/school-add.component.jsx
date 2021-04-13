@@ -6,6 +6,8 @@ import { createSchoolProfileDocument } from '../../firebase/firebase.utils'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component';
 
+import './school-add.styles.scss';
+
 class SchoolAdd extends React.Component {
     constructor(){
         super();
@@ -40,7 +42,6 @@ class SchoolAdd extends React.Component {
 
     handleSubmit = async (event, history) => {
         event.preventDefault();
-        const {name, shorthand, teacher, country, city, training_days, logo_url, description, published} = this.state;
         
         try{
         
@@ -90,7 +91,7 @@ class SchoolAdd extends React.Component {
                         name='name'
                         value={name}
                         onChange={this.handleChange}
-                        label='Name'
+                        placeholder='Name'
                         required
                     />
 
@@ -99,7 +100,7 @@ class SchoolAdd extends React.Component {
                         name='shorthand'
                         value={shorthand}
                         onChange={this.handleChange}
-                        label='Shorthand'
+                        placeholder='Shorthand'
                         required
                     />
 
@@ -108,7 +109,7 @@ class SchoolAdd extends React.Component {
                         name='teacher'
                         value={teacher}
                         onChange={this.handleChange}
-                        label='Teacher'
+                        placeholder='Teacher'
                         required
                     />
 
@@ -117,7 +118,7 @@ class SchoolAdd extends React.Component {
                         name='country'
                         value={country}
                         onChange={this.handleChange}
-                        label='Country'
+                        placeholder='Country'
                         required
                     />
 
@@ -126,7 +127,7 @@ class SchoolAdd extends React.Component {
                         name='city'
                         value={city}
                         onChange={this.handleChange}
-                        label='City'
+                        placeholder='City'
                         required
                     />
 
@@ -135,26 +136,30 @@ class SchoolAdd extends React.Component {
                         name='logo_url'
                         value={logo_url}
                         onChange={this.handleChange}
-                        label='Logo URL'
+                        placeholder='Logo URL'
                         required
                     />
 
-                    <FormInput
+                    <textarea
                         className='description-field'
-                        type='text'
                         name='description'
                         value={description}
                         onChange={this.handleChange}
-                        label='Description'
+                        placeholder='Description'
                         required
-                    />
+                    >
 
+                    </textarea>
+
+                    <div className="published-container">
+                    <span>Published </span>
                     <FormInput
                         type='checkbox'
                         name='published'
                         value={published}
                         onChange={this.handleChange}
                     />
+                    </div>
 
                     <CustomButton type='submit'>Add School</CustomButton>
                 </form>

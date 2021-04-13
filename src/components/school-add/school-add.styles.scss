@@ -1,0 +1,21 @@
+.description-field{
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border: 1px solid grey;
+    min-height: 150px;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    color: grey;
+  }
+
+  .published-container{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .group input{
+          width:auto;
+          margin: 0 10px;
+      }
+  }

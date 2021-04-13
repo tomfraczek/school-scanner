@@ -16,5 +16,5 @@ createSelector(
 export const selectCurrentUserSchools = userId =>
 createSelector(
     [selectSchool],
-    school => school ? school.schools.filter(school => school.author.id === userId) : []
+    userSchool => userSchool ? userSchool.schools.filter(userSchool => userSchool.author.id === userId) : []
 )

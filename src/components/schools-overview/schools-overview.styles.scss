@@ -1,5 +1,33 @@
-.schools-overview{
+.school-cards{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+}
+
+.schools-overview{
+    width:100%;
+}
+
+.no-result-message{
+    text-align: center;
+    margin:50px auto;
+}
+
+.sign-up-form{
+    position: relative;
+}
+
+.remove-search{
+    position: absolute;
+    top:0;
+    right:10px;
+    padding:10px;
+    font-size: 20px;
+    background: none;
+    color: grey;
+    border: none;
+    
+    &:hover{
+        cursor: pointer;
+    }
 }
